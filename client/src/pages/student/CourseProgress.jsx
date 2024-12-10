@@ -18,7 +18,7 @@ import { useLoadUserQuery } from "@/features/api/authApi";
 const CourseProgress = () => {
     const params = useParams();
     const courseId = params.courseId;
-    const { data:userData } = useLoadUserQuery();
+    const { data: userData } = useLoadUserQuery();
 
     const { data, isLoading, isError, refetch } =
         useGetCourseProgressQuery(courseId);
@@ -97,35 +97,37 @@ const CourseProgress = () => {
     return (
         <div className="max-w-7xl mx-auto p-4 mt-20">
             {/* Display course name  */}
-            <div className="flex justify-between mb-4">
-                <h1 className="text-2xl font-bold">{courseTitle}</h1>
-                <div className="flex">
+            <div className="flex justify-between mb-4 flex-col sm:flex-row">
+                <h1 className="text-2xl font-bold mb-2 sm:mb-0">{courseTitle}</h1>
 
-
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
                     <Button
                         disabled={!completed}
-                        className="mr-4"
+                        className="w-full sm:w-auto"
                         onClick={() => generateCertificate(userData?.user.name, courseTitle)}>
-
-                        {completed ? (<><div className="flex items-center">
-                            <span>Download Certificate</span>
-                        </div></>) : "Download Certificate"}
+                        {completed ? (
+                            <div className="flex items-center">
+                                <span>Download Certificate</span>
+                            </div>
+                        ) : "Download Certificate"}
                     </Button>
+
                     <Button
                         onClick={completed ? handleInCompleteCourse : handleCompleteCourse}
                         variant={completed ? "outline" : "default"}
+                        className="w-full sm:w-auto"
                     >
                         {completed ? (
                             <div className="flex items-center">
-                                <CheckCircle className="h-4 w-4 mr-2" /> <span>Completed</span>{" "}
+                                <CheckCircle className="h-4 w-4 mr-2" /> <span>Completed</span>
                             </div>
                         ) : (
                             "Mark as completed"
                         )}
                     </Button>
                 </div>
-
             </div>
+
 
             <div className="flex flex-col md:flex-row gap-6">
                 {/* Video section  */}
