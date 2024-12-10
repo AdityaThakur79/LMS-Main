@@ -17,7 +17,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
 
-const MEDIA_API = "http://localhost:8080/api/media";
+const MEDIA_API = "https://lms-main-hpi3.onrender.com/api/media";
 
 const LectureTab = () => {
     const [lectureTitle, setLectureTitle] = useState("");
